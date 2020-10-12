@@ -24,13 +24,18 @@ $now = date("D, d M Y H:i:s T");
 	<channel>
 		<title>Tertúlia On-Line - Conscienciologia</title>
 		<link>http://www.tertuliaconscienciologia.org</link>
+		<description>Defesas de verbete da enciclopédia da conscienciologia.</description>
 		<atom:link href="<?php echo $link; ?>" rel="self" type="application/rss+xml" />
 		<pubDate><?php echo $now; ?></pubDate>
 		<language>pt-BR</language>
-		<image><url>http://podcast.infocomunicologia.org/tertulia/tertuliarium.jpg</url></image>
+		<itunes:image href='http://podcast.infocomunicologia.org/tertulia/tertuliarium.jpg' />
 		<itunes:owner>
 			<itunes:email>tertuliarium@ceaec.org</itunes:email>
 		</itunes:owner>
+		<itunes:author>CEAEC</itunes:author>
+		<itunes:email>tertuliarium@ceaec.org</itunes:email>
+		<itunes:explicit>false</itunes:explicit>
+		<itunes:category text="Science" />
 	<?php foreach ($results as $key => $val ){ ?>
 <item>
 		<title><?php echo "Tertúlia ".$key." - ".$val[0]; ?></title>

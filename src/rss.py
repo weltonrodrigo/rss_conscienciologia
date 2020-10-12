@@ -1,7 +1,9 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 import sys
 import urllib
 import json
+import urlparse
 import uuid
 sys.path.append("./")
 
@@ -34,6 +36,14 @@ def especialidade(file):
 		return file[x[0]+3:x[1]].strip()
 	else:
 		return ''
+
+
+def mudar_host(link):
+	""""Muda o nome de host para o endereço que permite requests
+	em Byte Range"""
+	parsed = urlparse.urlparse(link)
+	new_parsed = parsed._replace(netloc='dl.dropboxusercontent.com')
+	return new_parsed.geturl()
 #=======================================
 def main():
   data = {}
@@ -45,7 +55,7 @@ def main():
             if link.find("dropbox") >= 0:
                 z = LI[x].text
 		if numero(z).isdigit():
-			data[numero(z)]= [titulo(z) , especialidade(link) , link, "31/12/2018", str(uuid.uuid5(uuid.NAMESPACE_DNS, titulo(z).encode('utf-8')))]
+			data[numero(z)]= [titulo(z) , especialidade(link) , mudar_host(link), "31/12/2018", str(uuid.uuid5(uuid.NAMESPACE_DNS, titulo(z).encode('utf-8')))]
   print json.dumps(data)
 #=======================================
 if __name__ == '__main__':
